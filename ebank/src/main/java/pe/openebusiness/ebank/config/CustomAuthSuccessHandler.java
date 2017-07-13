@@ -8,21 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-@Component("customLogoutSuccessHandler")
-public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
-
+@Component("customAuthSuccessHandler")
+public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+	
 	@Override
-	public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth)
+	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth)
 			throws IOException, ServletException {
 		HttpSession session = req.getSession();
-		SecurityContextHolder.getContext().setAuthentication(null);
 		
-		session.setAttribute("username", null);
-		session.setAttribute("authorities", null);
+		session.setAttribute("username", auth.getName());
+		session.setAttribute("authorities", auth.getAuthorities());
 		
 		res.setStatus(HttpServletResponse.SC_OK);
 		

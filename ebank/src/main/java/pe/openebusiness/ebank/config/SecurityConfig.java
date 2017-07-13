@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.session.SessionManagementFilter;
 
 @EnableWebSecurity
@@ -25,14 +26,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	@Qualifier("customUserDetailsService")
 	UserDetailsService userDetailsService;
-	
+
 	@Autowired
-	@Qualifier("customAuthenticationFailureHandler")
-	AuthenticationFailureHandler authenticationFailureHandler;
-	
-	@Autowired
-	@Qualifier("customAuthenticationSuccessHandler")
+	@Qualifier("customAuthSuccessHandler")
 	AuthenticationSuccessHandler authenticationSuccessHandler;
+	
+	@Autowired
+	@Qualifier("customAuthFailureHandler")
+	AuthenticationFailureHandler authenticationFailureHandler;
+
+	@Autowired
+	@Qualifier("customLogoutSuccessHandler")
+	LogoutSuccessHandler logoutSuccessHandler;
 	
 	@Autowired
 	private CustomAuthenticationEntryPoint authenticationEntryPoint;
@@ -49,6 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.authorizeRequests()
 			.antMatchers("/*").authenticated()
+			.antMatchers("/test/user/get").hasRole("TEST")
+			.antMatchers("/user/getProfile").hasRole("TEST")
+			.antMatchers("/navigation/getMenu").hasRole("TEST")
+			.antMatchers("/user/changePassword").permitAll()
 			.antMatchers(HttpMethod.OPTIONS).permitAll()
 			.and()
 			.formLogin().usernameParameter("username").passwordParameter("password").permitAll()
@@ -56,7 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.failureHandler(authenticationFailureHandler)
 			.and()
 			.logout().permitAll()
-			.logoutSuccessHandler(new CustomLogoutSuccessHandler())
+			.logoutSuccessHandler(logoutSuccessHandler)
 			.and()
 			.exceptionHandling()
 			.authenticationEntryPoint(authenticationEntryPoint);
@@ -69,7 +78,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	private AuthenticationProvider authenticationProvider() {
+	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 		
 		provider.setUserDetailsService(userDetailsService);
@@ -79,7 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	private PasswordEncoder passwordEncoder() {
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
