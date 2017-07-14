@@ -1,5 +1,7 @@
 package pe.openebusiness.ebank.dao;
 
+import java.util.List;
+
 import pe.openebusiness.ebank.model.User;
 
 public interface UserDao {
@@ -17,5 +19,9 @@ public interface UserDao {
 	void updatePassword(String username, String password);
 	
 	boolean validateCurrentPassword(String username, String password);
+	
+	List<User> getAllUsers();
+	
+	void resetPassword(String username, String password);
 
 }

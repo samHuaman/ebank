@@ -3,9 +3,11 @@ package pe.openebusiness.ebank.dao;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
@@ -143,6 +145,45 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		}
 		
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getAllUsers() {
+		Criteria criteria = createEntityCriteria()
+				.setProjection(Projections.projectionList()
+						.add(Projections.property("user_id"), "user_id")
+						.add(Projections.property("username"), "username")
+						.add(Projections.property("enabled"), "enabled")
+						.add(Projections.property("user_expired_date"), "user_expired_date")
+						.add(Projections.property("credentials_expired_date"), "credentials_expired_date")
+						.add(Projections.property("email"), "email")
+						.add(Projections.property("firstname"), "firstname")						
+						.add(Projections.property("firstname"), "firstname")
+						.add(Projections.property("days_enabled"), "days_enabled"))
+				.setResultTransformer(Transformers.aliasToBean(User.class));
+		
+		criteria.addOrder(Order.asc("username"));
+		
+		List<User> users = (List<User>) criteria.list();
+		return users;
+	}
+
+	@Override
+	public void resetPassword(String username, String password) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("username", username));
+
+		User user = (User) criteria.uniqueResult();
+		
+		LocalDateTime ldt = LocalDateTime.now();
+		Date now = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+		
+		user.setEnd_lock_date(now);
+		user.setCredentials_expired_date(now);
+		user.setPassword(password);
+		
+		update(user);
 	}
 
 }

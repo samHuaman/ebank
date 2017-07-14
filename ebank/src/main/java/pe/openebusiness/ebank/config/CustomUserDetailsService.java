@@ -37,8 +37,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-				Helpers.intToBoolean(user.getEnabled()), true, credentialsNonExpired(user), accountNonLocked(user),
-				getGrantedAuthorities(user));
+				Helpers.intToBoolean(user.getEnabled()), accountNonExpired(user), credentialsNonExpired(user),
+				accountNonLocked(user), getGrantedAuthorities(user));
 	}
 
 	private List<GrantedAuthority> getGrantedAuthorities(User user) {
@@ -51,6 +51,23 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 
 		return grantedAuthorities;
+	}
+
+	private boolean accountNonExpired(User user) {
+		LocalDateTime ldt = LocalDateTime.now();
+		Date now = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());
+
+		if (user.getUser_expired_date() != null) {
+			int result = now.compareTo(user.getUser_expired_date());
+
+			if (result < 0) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	private boolean accountNonLocked(User user) {

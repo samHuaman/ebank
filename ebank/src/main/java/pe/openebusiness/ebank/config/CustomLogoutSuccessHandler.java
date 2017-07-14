@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component("customLogoutSuccessHandler")
 public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
-
+	
 	@Override
 	public void onLogoutSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth)
 			throws IOException, ServletException {
