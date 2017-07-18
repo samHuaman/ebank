@@ -10,6 +10,8 @@ import pe.openebusiness.ebank.config.service.UserService;
 import pe.openebusiness.ebank.dao.UserDao;
 import pe.openebusiness.ebank.model.User;
 
+import java.util.List;
+
 @Component
 @Service("userService")
 @Transactional
@@ -52,5 +54,12 @@ public class UserServiceImpl implements UserService {
 	public boolean validateCurrentPassword(String username, String password) {
 		return dao.validateCurrentPassword(username, password);
 	}
+
+	//PG
+	@Override
+	public void disableUser(String username,int valor, String comment) {dao.disableUser(username,valor,comment); }
+
+	@Override
+	public List<User> getAllUser(){return dao.getAllUser();}
 
 }
