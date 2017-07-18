@@ -1,5 +1,7 @@
 package pe.openebusiness.ebank.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,11 +57,28 @@ public class UserServiceImpl implements UserService {
 		return dao.validateCurrentPassword(username, password);
 	}
 
+<<<<<<< HEAD
 	//PG
 	@Override
 	public void disableUser(String username,int valor, String comment) {dao.disableUser(username,valor,comment); }
 
 	@Override
 	public List<User> getAllUser(){return dao.getAllUser();}
+=======
+	@Override
+	public List<User> getAllUsers() {
+		return dao.getAllUsers();
+	}
+
+	@Override
+	public void resetPassword(String username, String password) {
+		dao.resetPassword(username, password);
+	}
+
+	@Override
+	public void saveUser(User user, String p_password) {
+		dao.saveUser(user, p_password);
+	}
+>>>>>>> 06663c0b69e97bd03328406c07eefd32fdcd2c60
 
 }

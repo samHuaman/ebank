@@ -1,5 +1,7 @@
 package pe.openebusiness.ebank.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.openebusiness.ebank.config.service.UserService;
@@ -44,8 +47,8 @@ public class UserController {
 		return "Logged out";
 	}
 	
-	@RequestMapping(value = "changePassword")
-	public String changePassword(String username, String currentPassword, String newPassword) {
+	@RequestMapping(value = "changePassword", method = RequestMethod.POST)
+	private String changePassword(String username, String currentPassword, String newPassword) {
 		boolean currentPasswordIsValid = userService.validateCurrentPassword(username, currentPassword);
 		
 		if (currentPasswordIsValid) {
@@ -55,6 +58,23 @@ public class UserController {
 			return "WARNING";
 		}
 		
+		return "SUCCESS";
+	}
+	
+	@RequestMapping(value = "getUsers")
+	private List<User> getAllUsers() {
+		return userService.getAllUsers();
+	}
+	
+	@RequestMapping(value = "resetPassword", method = RequestMethod.POST)
+	private String resetPassword(String username, String password) {
+		userService.resetPassword(username, password);
+		return "SUCCESS";
+	}
+	
+	@RequestMapping(value = "saveUser", method = RequestMethod.POST)
+	private String saveUser(User user, String p_password) {
+		userService.saveUser(user, p_password);
 		return "SUCCESS";
 	}
 

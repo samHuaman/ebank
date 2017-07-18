@@ -9,14 +9,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+//import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+//import org.hibernate.annotations.GenericGenerator;
+//import org.hibernate.annotations.Parameter;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -25,7 +28,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class User implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "user_seq")
+	@SequenceGenerator(name = "user_seq", sequenceName = "USER_SEQ", allocationSize = 1	)
 	@Column(name = "user_id")
 	private Integer user_id;
 	

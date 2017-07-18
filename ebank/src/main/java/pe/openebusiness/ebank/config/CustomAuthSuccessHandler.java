@@ -7,12 +7,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import pe.openebusiness.ebank.config.service.UserService;
+
 @Component("customAuthSuccessHandler")
 public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+	
+	@Autowired
+	UserService userService;
 	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse res, Authentication auth)
@@ -29,6 +35,8 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
 		res.setHeader("Access-Control-Max-Age", "3600");
 		res.setHeader("Access-Control-Allow-Headers", "x-requested-with, authorization, content-type, cookies");
 		res.setHeader("Access-Control-Allow-Credentials", "true");
+		
+		userService.resetFailedAttempt(auth.getName());
 	}
 
 }
