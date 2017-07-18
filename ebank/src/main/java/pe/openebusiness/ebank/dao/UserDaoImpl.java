@@ -186,4 +186,44 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		update(user);
 	}
 
+	@Override
+	public void saveUser(User user, String p_password) {
+		Criteria criteria = createEntityCriteria();
+		
+		if (user.getUser_id() == null) {
+			User _user = new User();
+			LocalDateTime ldt = LocalDateTime.now();
+			Date now = Date.from(ldt.atZone(ZoneId.systemDefault()).toInstant());			
+			
+			_user.setUsername(user.getUsername());
+			_user.setPassword(p_password);
+			_user.setEnabled(1);
+			_user.setUser_expired_date(user.getUser_expired_date());
+			_user.setCredentials_expired_date(now);
+			_user.setEnd_lock_date(now);
+			_user.setEmail(user.getEmail());
+			_user.setEmail_confirmed(user.getEmail_confirmed());
+			_user.setFirstname(user.getFirstname());
+			_user.setLastname(user.getLastname());
+			_user.setDays_enabled(user.getDays_enabled());
+			_user.setFailed_attempts(0);
+			
+			persist(_user);
+		}
+		else {
+			criteria.add(Restrictions.eq("user_id", user.getUser_id()));
+			User _user = (User) criteria.uniqueResult();	
+			
+			_user.setEnabled(1);
+			_user.setUser_expired_date(user.getUser_expired_date());
+			_user.setEmail(user.getEmail());
+			_user.setEmail_confirmed(user.getEmail_confirmed());
+			_user.setFirstname(user.getFirstname());
+			_user.setLastname(user.getLastname());
+			_user.setDays_enabled(user.getDays_enabled());
+			
+			update(_user);
+		}
+	}
+
 }

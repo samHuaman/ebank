@@ -65,4 +65,9 @@ public class UserServiceImpl implements UserService {
 		dao.resetPassword(username, password);
 	}
 
+	@Override
+	public void saveUser(User user, String p_password) {
+		dao.saveUser(user, p_password);
+	}
+
 }

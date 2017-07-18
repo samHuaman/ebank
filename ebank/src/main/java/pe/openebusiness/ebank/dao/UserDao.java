@@ -23,5 +23,7 @@ public interface UserDao {
 	List<User> getAllUsers();
 	
 	void resetPassword(String username, String password);
+	
+	void saveUser(User user, String p_password);
 
 }

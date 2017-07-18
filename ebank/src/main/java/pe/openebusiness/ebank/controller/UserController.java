@@ -69,5 +69,11 @@ public class UserController {
 		userService.resetPassword(username, password);
 		return "SUCCESS";
 	}
+	
+	@RequestMapping(value = "saveUser", method = RequestMethod.POST)
+	private String saveUser(User user, String p_password) {
+		userService.saveUser(user, p_password);
+		return "SUCCESS";
+	}
 
 }
