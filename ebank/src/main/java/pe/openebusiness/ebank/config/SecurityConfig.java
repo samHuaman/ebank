@@ -58,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/user/getProfile").hasRole("TEST")
 			.antMatchers("/user/getUsers").hasRole("TEST")
 			.antMatchers("/user/resetPassword").hasRole("TEST")
+			.antMatchers("/user/getUserById").hasRole("TEST")
 			.antMatchers("/navigation/getMenu").hasRole("TEST")
 			.antMatchers("/user/changePassword").permitAll()
 			.antMatchers(HttpMethod.OPTIONS).permitAll()

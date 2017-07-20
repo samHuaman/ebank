@@ -38,6 +38,20 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	@Override
+	public User findById(Integer id) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("user_id", id));
+		
+		User user = (User) criteria.uniqueResult();
+
+		if (user != null) {
+			Hibernate.initialize(user.getRoles());
+		}
+		
+		return user;
+	}
+
+	@Override
 	public User findProfile(String username) {
 		Criteria criteria = createEntityCriteria()
 				.setProjection(Projections.projectionList()
@@ -213,16 +227,17 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		else {
 			criteria.add(Restrictions.eq("user_id", user.getUser_id()));
 			User _user = (User) criteria.uniqueResult();	
-			
-			_user.setEnabled(1);
-			_user.setUser_expired_date(user.getUser_expired_date());
-			_user.setEmail(user.getEmail());
-			_user.setEmail_confirmed(user.getEmail_confirmed());
-			_user.setFirstname(user.getFirstname());
-			_user.setLastname(user.getLastname());
-			_user.setDays_enabled(user.getDays_enabled());
-			
-			update(_user);
+
+			if (user != null) {
+				_user.setEnabled(user.getEnabled());
+				_user.setUser_expired_date(user.getUser_expired_date());
+				_user.setEmail(user.getEmail());
+				_user.setFirstname(user.getFirstname());
+				_user.setLastname(user.getLastname());
+				_user.setDays_enabled(user.getDays_enabled());
+				
+				update(_user);
+			}
 		}
 	}
 

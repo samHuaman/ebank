@@ -75,7 +75,7 @@ public class User implements Serializable {
 	@Column(name = "failed_attempts", nullable = false)
 	private Integer failed_attempts;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "USER_ROLE", joinColumns = {
 			@JoinColumn(name = "user_id", referencedColumnName = "user_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "role_id", referencedColumnName = "role_id") })

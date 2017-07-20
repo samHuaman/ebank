@@ -8,6 +8,8 @@ public interface UserDao {
 	
 	User findByUsername(String username);
 	
+	User findById(Integer id);
+	
 	User findProfile(String username);
 	
 	void updateFailedAttempt(String username);

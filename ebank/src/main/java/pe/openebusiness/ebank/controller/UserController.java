@@ -34,6 +34,12 @@ public class UserController {
 		return user;		
 	}
 	
+	@RequestMapping(value = "getUserById")
+	private User getUserById(int id) {
+		User user = userService.findById(id);
+		return user;
+	}
+	
 	@RequestMapping(value = "logout")
 	public String logout(HttpServletRequest req, HttpServletResponse res) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
