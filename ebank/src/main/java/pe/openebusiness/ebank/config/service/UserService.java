@@ -4,8 +4,6 @@ import java.util.List;
 
 import pe.openebusiness.ebank.model.User;
 
-import java.util.List;
-
 public interface UserService {
 	
 	User findByUsername(String username);
@@ -30,7 +28,6 @@ public interface UserService {
 	
 	void saveUser(User user, String p_password);
 
-	//PG
 	void disableUser(String username, int valor, String comment);
 
 	List<User> getAllUser();

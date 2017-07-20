@@ -163,8 +163,6 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		return false;
 	}
 
-<<<<<<< HEAD
-	//PG
 	@Override
 	public void disableUser(String username, int valor,String comment) {
 
@@ -200,7 +198,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		List<User> users = (List<User>) criteria.list();
 		return users;
 	}
-=======
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsers() {
@@ -281,5 +279,4 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		}
 	}
 
->>>>>>> 06663c0b69e97bd03328406c07eefd32fdcd2c60
 }

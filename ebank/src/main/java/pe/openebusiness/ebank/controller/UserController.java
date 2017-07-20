@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.openebusiness.ebank.config.service.UserService;
 import pe.openebusiness.ebank.model.User;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(value = "user")
 public class UserController {

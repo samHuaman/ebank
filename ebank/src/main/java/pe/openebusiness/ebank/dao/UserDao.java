@@ -4,8 +4,6 @@ import java.util.List;
 
 import pe.openebusiness.ebank.model.User;
 
-import java.util.List;
-
 public interface UserDao {
 	
 	User findByUsername(String username);
