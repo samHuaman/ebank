@@ -22,6 +22,7 @@ import pe.openebusiness.ebank.model.User;
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	
 	private static final Integer DAYS_ENABLED_DEFAULT = 30;
+	//Criteria criteria = createEntityCriteria();
 
 	@Override
 	public User findByUsername(String username) {
@@ -53,7 +54,8 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 	@Override
 	public User findProfile(String username) {
-		Criteria criteria = createEntityCriteria()
+		Criteria criteria = createEntityCriteria();
+		criteria
 				.setProjection(Projections.projectionList()
 						.add(Projections.property("user_id"), "user_id")
 						.add(Projections.property("username"), "username")
@@ -161,6 +163,44 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		return false;
 	}
 
+<<<<<<< HEAD
+	//PG
+	@Override
+	public void disableUser(String username, int valor,String comment) {
+
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("username",username));
+		User user = (User) criteria.uniqueResult();
+		if (valor == 0){
+			user.setEnabled(valor);
+		}else{
+			user.setEnabled(valor);
+		}
+		user.setEnabled_commentary(comment);
+		update(user);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getAllUser(){
+		Criteria criteria = createEntityCriteria();
+		criteria.setProjection(Projections.projectionList()
+		.add(Projections.property("user_id"),"user_id")
+		.add(Projections.property("username"),"username")
+		.add(Projections.property("enabled"),"enabled")
+		.add(Projections.property("user_expired_date"),"user_expired_date")
+		.add(Projections.property("credentials_expired_date"),"credentials_expired_date")
+		.add(Projections.property("email"),"email")
+		.add(Projections.property("firstname"),"firstname")
+		.add(Projections.property("lastname"),"lastname")
+		.add(Projections.property("days_enabled"),"days_enabled"))
+		.setResultTransformer(Transformers.aliasToBean(User.class));
+
+		criteria.addOrder(Order.asc("username"));
+		List<User> users = (List<User>) criteria.list();
+		return users;
+	}
+=======
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsers() {
@@ -241,4 +281,5 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		}
 	}
 
+>>>>>>> 06663c0b69e97bd03328406c07eefd32fdcd2c60
 }

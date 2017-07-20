@@ -44,6 +44,9 @@ public class User implements Serializable {
 	@NotNull
 	@Column(name = "enabled", nullable = false)
 	private Integer enabled;
+
+	@Column(name = "enabled_commentary", nullable = true)
+	private String enabled_commentary;
 	
 	@Column(name = "user_expired_date", nullable = true)
 	private Date user_expired_date;
@@ -193,5 +196,10 @@ public class User implements Serializable {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
+	public String getEnabled_commentary() {return enabled_commentary;}
+
+	public void setEnabled_commentary(String enabled_commentary) {this.enabled_commentary = enabled_commentary;}
+
 
 }

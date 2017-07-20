@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.openebusiness.ebank.config.service.UserService;
 import pe.openebusiness.ebank.model.User;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "user")
 public class UserController {
@@ -81,5 +83,16 @@ public class UserController {
 		userService.saveUser(user, p_password);
 		return "SUCCESS";
 	}
+
+	@RequestMapping(value="getUsers")
+	public List<User> getAllUser(){return userService.getAllUser();}
+
+
+    @RequestMapping(value = "enableUsers")
+    private String enableUsers(String username, int valor, String comment) {
+      userService.disableUser(username,valor,comment);
+
+      return "SUCCESS";
+    }
 
 }
