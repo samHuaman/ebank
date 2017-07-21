@@ -1,5 +1,6 @@
 package pe.openebusiness.ebank.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import pe.openebusiness.ebank.config.service.UserService;
 import pe.openebusiness.ebank.dao.UserDao;
@@ -79,6 +81,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void saveUser(User user, String p_password) {
 		dao.saveUser(user, p_password);
+	}
+
+	@Override
+	public String saveUserImage(String username, MultipartFile file) throws Exception {
+		return dao.saveUserImage(username, file);
+	}
+
+	@Override
+	public byte[] getUserImage(String username) throws IOException {
+		return dao.getUserImage(username);
 	}
 
 }

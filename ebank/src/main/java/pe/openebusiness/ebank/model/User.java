@@ -77,6 +77,9 @@ public class User implements Serializable {
 	@NotNull
 	@Column(name = "failed_attempts", nullable = false)
 	private Integer failed_attempts;
+	
+	@Column(name = "user_image")
+	private byte[] user_image;
 
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "USER_ROLE", joinColumns = {
@@ -197,9 +200,21 @@ public class User implements Serializable {
 		this.roles = roles;
 	}
 
-	public String getEnabled_commentary() {return enabled_commentary;}
+	public byte[] getUser_image() {
+		return user_image;
+	}
 
-	public void setEnabled_commentary(String enabled_commentary) {this.enabled_commentary = enabled_commentary;}
+	public void setUser_image(byte[] user_image) {
+		this.user_image = user_image;
+	}
+
+	public String getEnabled_commentary() {
+		return enabled_commentary;
+	}
+
+	public void setEnabled_commentary(String enabled_commentary) {
+		this.enabled_commentary = enabled_commentary;
+	}
 
 
 }
