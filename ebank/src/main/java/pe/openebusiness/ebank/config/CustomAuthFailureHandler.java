@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.CredentialsExpiredException;
 import org.springframework.security.authentication.DisabledException;
@@ -61,6 +62,9 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
 			}
 			else if (exception.getClass().isAssignableFrom(LockedException.class)) {
 				res.setStatus(HttpServletResponse.SC_PRECONDITION_FAILED);
+			}
+			else if (exception.getClass().isAssignableFrom(AccountExpiredException.class)) {
+				res.setStatus(HttpServletResponse.SC_GONE);
 			}
 			else {
 				res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
