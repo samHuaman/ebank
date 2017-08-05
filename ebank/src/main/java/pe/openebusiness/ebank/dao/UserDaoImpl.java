@@ -27,7 +27,6 @@ import pe.openebusiness.ebank.model.User;
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	
 	private static final Integer DAYS_ENABLED_DEFAULT = 30;
-	//Criteria criteria = createEntityCriteria();
 
 	@Override
 	public User findByUsername(String username) {
@@ -196,7 +195,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAllUser(){
+	public List<User> getAllUser() {
 		Criteria criteria = createEntityCriteria();
 		criteria.setProjection(Projections.projectionList()
 				.add(Projections.property("user_id"),"user_id")
