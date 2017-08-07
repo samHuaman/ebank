@@ -2,6 +2,7 @@ package pe.openebusiness.ebank.service;
 
 import java.util.List;
 
+import pe.openebusiness.ebank.bind.CustomHttpResponse;
 import pe.openebusiness.ebank.bind.Select2Response;
 import pe.openebusiness.ebank.model.AddressGroupType;
 import pe.openebusiness.ebank.model.AddressType;
@@ -61,5 +62,11 @@ public interface ClientService {
 	List<CivilStatus> getAllCivilStatus();
 	
 	List<EmploymentSituation> getAllSituations();
+	
+	Select2Response<Country> searchCountry(String query, Integer page, Integer pageLimit);
+	
+	public CustomHttpResponse edit(Client client);
+	
+	public CustomHttpResponse editContactInfo(ClientContactInformation contactInformation);
 
 }

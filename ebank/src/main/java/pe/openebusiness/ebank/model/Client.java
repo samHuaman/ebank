@@ -50,6 +50,9 @@ public class Client implements Serializable {
 	@JoinColumn(name = "economic_activity_id")
 	private EconomicActivity economicActivity;
 	
+	@Column(name = "business_name", nullable = false)
+	private String business_name;
+	
 	@NotEmpty
 	@Column(name = "firstname", nullable = false)
 	private String fristname;
@@ -131,6 +134,22 @@ public class Client implements Serializable {
 
 	public void setTaxpayer_id_number(String taxpayer_id_number) {
 		this.taxpayer_id_number = taxpayer_id_number;
+	}
+
+	public String getBusiness_name() {
+		return business_name;
+	}
+
+	public void setBusiness_name(String business_name) {
+		this.business_name = business_name;
+	}
+
+	public Set<ClientContactInformation> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(Set<ClientContactInformation> contacts) {
+		this.contacts = contacts;
 	}
 
 	public String getFristname() {

@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import pe.openebusiness.ebank.bind.CustomHttpResponse;
 import pe.openebusiness.ebank.bind.Select2Response;
 import pe.openebusiness.ebank.model.AddressGroupType;
 import pe.openebusiness.ebank.model.AddressType;
@@ -159,6 +161,17 @@ public class ClientController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "searchCountries")
+	private Select2Response<Country> searchCountries(String query, Integer page, Integer pageLimit) {
+		if (page == null) {
+			page = 1;
+		}
+		
+		Select2Response<Country> response = clientService.searchCountry(query, page, pageLimit);
+		return response;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "getAllCivilStatus")
 	private List<CivilStatus> getAllCivilStatus() {
 		List<CivilStatus> civilStatus = clientService.getAllCivilStatus();
@@ -170,6 +183,20 @@ public class ClientController {
 	private List<EmploymentSituation> getAllSituations() {
 		List<EmploymentSituation> situations = clientService.getAllSituations();
 		return situations;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "editClient", method = RequestMethod.POST)
+	private CustomHttpResponse editClient(Client client) {
+		CustomHttpResponse response = clientService.edit(client);
+		return response;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "editContactInfo", method = RequestMethod.POST)
+	private CustomHttpResponse editContactInfo(ClientContactInformation contactInformation) {
+		CustomHttpResponse response = clientService.editContactInfo(contactInformation);
+		return response;
 	}
 	
 }

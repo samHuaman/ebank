@@ -5,6 +5,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import pe.openebusiness.ebank.bind.CustomHttpResponse;
 import pe.openebusiness.ebank.model.ClientAddress;
 
 @Component
@@ -19,6 +20,12 @@ public class ClientAddressDaoImpl extends AbstractDao<Integer, ClientAddress> im
 		
 		ClientAddress clientAddress = (ClientAddress) criteria.uniqueResult();
 		return clientAddress;
+	}
+
+	@Override
+	public CustomHttpResponse edit(ClientAddress clientAddress) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import pe.openebusiness.ebank.bind.CustomHttpResponse;
 import pe.openebusiness.ebank.bind.Select2Response;
 import pe.openebusiness.ebank.dao.AddressGroupTypeDao;
 import pe.openebusiness.ebank.dao.AddressTypeDao;
@@ -198,6 +199,21 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public List<EmploymentSituation> getAllSituations() {
 		return employmentSituationDao.getAllSituations();
+	}
+
+	@Override
+	public Select2Response<Country> searchCountry(String query, Integer page, Integer pageLimit) {
+		return countryDao.searchCountries(query, page, pageLimit);
+	}
+
+	@Override
+	public CustomHttpResponse edit(Client client) {
+		return clientDao.edit(client);
+	}
+
+	@Override
+	public CustomHttpResponse editContactInfo(ClientContactInformation contactInformation) {
+		return contactDao.edit(contactInformation);
 	}
 
 }
