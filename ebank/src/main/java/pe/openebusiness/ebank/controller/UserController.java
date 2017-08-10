@@ -6,17 +6,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import pe.openebusiness.ebank.config.service.UserService;
 import pe.openebusiness.ebank.model.User;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "user")
@@ -24,6 +26,7 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+	
 	
 	@RequestMapping(value = "getProfile")
 	private User getProfile() {
@@ -34,6 +37,12 @@ public class UserController {
 		user = userService.findProfile(username);
 		
 		return user;		
+	}
+	
+	@RequestMapping(value = "getUserById")
+	private User getUserById(int id) {
+		User user = userService.findById(id);
+		return user;
 	}
 	
 	@RequestMapping(value = "logout")
@@ -78,15 +87,22 @@ public class UserController {
 		return "SUCCESS";
 	}
 
-	@RequestMapping(value="getUsers")
-	public List<User> getAllUser(){return userService.getAllUser();}
-
-
     @RequestMapping(value = "enableUsers")
-    private String enableUsers(String username, int valor, String comment) {
-      userService.disableUser(username,valor,comment);
+    private String enableUsers(String username, Integer value, String comment) {
+	    userService.disableUser(username,value,comment);
 
       return "SUCCESS";
     }
-
+    
+    @RequestMapping(value = "saveImage", method = RequestMethod.POST)
+    private String saveUserImage(String username, @RequestParam("file") MultipartFile file) throws Exception {
+    	return userService.saveUserImage(username, file);
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "getImage", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+    private byte[] getUserImage(String username) throws Exception {
+    	return userService.getUserImage(username);
+    }
+    
 }

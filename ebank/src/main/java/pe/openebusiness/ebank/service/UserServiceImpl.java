@@ -1,5 +1,6 @@
 package pe.openebusiness.ebank.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -7,12 +8,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import pe.openebusiness.ebank.config.service.UserService;
 import pe.openebusiness.ebank.dao.UserDao;
 import pe.openebusiness.ebank.model.User;
-
-import java.util.List;
 
 @Component
 @Service("userService")
@@ -25,6 +25,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findByUsername(String username) {
 		return dao.findByUsername(username);
+	}
+
+	@Override
+	public User findById(Integer id) {
+		return dao.findById(id);
 	}
 
 	@Override
@@ -57,14 +62,13 @@ public class UserServiceImpl implements UserService {
 		return dao.validateCurrentPassword(username, password);
 	}
 
-<<<<<<< HEAD
 	//PG
 	@Override
-	public void disableUser(String username,int valor, String comment) {dao.disableUser(username,valor,comment); }
+	public void disableUser(String username,Integer valor, String comment) {dao.disableUser(username,valor,comment); }
 
 	@Override
 	public List<User> getAllUser(){return dao.getAllUser();}
-=======
+
 	@Override
 	public List<User> getAllUsers() {
 		return dao.getAllUsers();
@@ -79,6 +83,16 @@ public class UserServiceImpl implements UserService {
 	public void saveUser(User user, String p_password) {
 		dao.saveUser(user, p_password);
 	}
->>>>>>> 06663c0b69e97bd03328406c07eefd32fdcd2c60
+
+	@Override
+	public String saveUserImage(String username, MultipartFile file) throws Exception {
+		return dao.saveUserImage(username, file);
+	}
+
+	@Override
+	public byte[] getUserImage(String username) throws IOException {
+		return dao.getUserImage(username);
+	}
+
 
 }

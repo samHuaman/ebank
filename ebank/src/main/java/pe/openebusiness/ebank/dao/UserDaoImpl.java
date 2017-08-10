@@ -1,5 +1,9 @@
 package pe.openebusiness.ebank.dao;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -14,6 +18,7 @@ import org.hibernate.transform.Transformers;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import pe.openebusiness.ebank.model.User;
 
@@ -39,10 +44,35 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	@Override
+	public User findById(Integer id) {
+		Criteria criteria = createEntityCriteria()
+				.setProjection(Projections.projectionList()
+						.add(Projections.property("user_id"), "user_id")
+						.add(Projections.property("username"), "username")
+						.add(Projections.property("enabled"), "enabled")
+						.add(Projections.property("user_expired_date"), "user_expired_date")
+						.add(Projections.property("credentials_expired_date"), "credentials_expired_date")
+						.add(Projections.property("email"), "email")
+						.add(Projections.property("firstname"), "firstname")						
+						.add(Projections.property("lastname"), "lastname")
+						.add(Projections.property("days_enabled"), "days_enabled"))
+				.setResultTransformer(Transformers.aliasToBean(User.class));
+		
+		criteria.add(Restrictions.eq("user_id", id));
+		
+		User user = (User) criteria.uniqueResult();
+
+		if (user != null) {
+			Hibernate.initialize(user.getRoles());
+		}
+		
+		return user;
+	}
+
+	@Override
 	public User findProfile(String username) {
 		Criteria criteria = createEntityCriteria();
-		criteria
-				.setProjection(Projections.projectionList()
+		criteria.setProjection(Projections.projectionList()
 						.add(Projections.property("user_id"), "user_id")
 						.add(Projections.property("username"), "username")
 						.add(Projections.property("user_expired_date"), "user_expired_date")
@@ -149,10 +179,10 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		return false;
 	}
 
-<<<<<<< HEAD
+
 	//PG
 	@Override
-	public void disableUser(String username, int valor,String comment) {
+	public void disableUser(String username, Integer valor,String comment) {
 
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("username",username));
@@ -171,22 +201,22 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	public List<User> getAllUser(){
 		Criteria criteria = createEntityCriteria();
 		criteria.setProjection(Projections.projectionList()
-		.add(Projections.property("user_id"),"user_id")
-		.add(Projections.property("username"),"username")
-		.add(Projections.property("enabled"),"enabled")
-		.add(Projections.property("user_expired_date"),"user_expired_date")
-		.add(Projections.property("credentials_expired_date"),"credentials_expired_date")
-		.add(Projections.property("email"),"email")
-		.add(Projections.property("firstname"),"firstname")
-		.add(Projections.property("lastname"),"lastname")
-		.add(Projections.property("days_enabled"),"days_enabled"))
-		.setResultTransformer(Transformers.aliasToBean(User.class));
+				.add(Projections.property("user_id"),"user_id")
+				.add(Projections.property("username"),"username")
+				.add(Projections.property("enabled"),"enabled")
+				.add(Projections.property("user_expired_date"),"user_expired_date")
+				.add(Projections.property("credentials_expired_date"),"credentials_expired_date")
+				.add(Projections.property("email"),"email")
+				.add(Projections.property("firstname"),"firstname")
+				.add(Projections.property("lastname"),"lastname")
+				.add(Projections.property("days_enabled"),"days_enabled"))
+				.setResultTransformer(Transformers.aliasToBean(User.class));
 
 		criteria.addOrder(Order.asc("username"));
 		List<User> users = (List<User>) criteria.list();
 		return users;
 	}
-=======
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsers() {
@@ -199,7 +229,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 						.add(Projections.property("credentials_expired_date"), "credentials_expired_date")
 						.add(Projections.property("email"), "email")
 						.add(Projections.property("firstname"), "firstname")						
-						.add(Projections.property("firstname"), "firstname")
+						.add(Projections.property("lastname"), "lastname")
 						.add(Projections.property("days_enabled"), "days_enabled"))
 				.setResultTransformer(Transformers.aliasToBean(User.class));
 		
@@ -253,18 +283,76 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		else {
 			criteria.add(Restrictions.eq("user_id", user.getUser_id()));
 			User _user = (User) criteria.uniqueResult();	
-			
-			_user.setEnabled(1);
-			_user.setUser_expired_date(user.getUser_expired_date());
-			_user.setEmail(user.getEmail());
-			_user.setEmail_confirmed(user.getEmail_confirmed());
-			_user.setFirstname(user.getFirstname());
-			_user.setLastname(user.getLastname());
-			_user.setDays_enabled(user.getDays_enabled());
-			
-			update(_user);
+
+			if (user != null) {
+				_user.setEnabled(user.getEnabled());
+				_user.setUser_expired_date(user.getUser_expired_date());
+				_user.setEmail(user.getEmail());
+				_user.setFirstname(user.getFirstname());
+				_user.setLastname(user.getLastname());
+				_user.setDays_enabled(user.getDays_enabled());
+				
+				update(_user);
+			}
 		}
 	}
 
->>>>>>> 06663c0b69e97bd03328406c07eefd32fdcd2c60
+	@Override
+	public String saveUserImage(String username, MultipartFile file) throws Exception {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("username", username));
+		
+		User _user = (User) criteria.uniqueResult();
+		
+		try {
+			byte[] bs = file.getBytes();
+			
+			if (_user != null) {
+				_user.setUser_image(bs);
+				update(_user);
+			}
+			else {
+				throw new Exception("User not found");
+			}
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return "FILENOTFOUND";
+		}
+		catch (IOException ioe) {
+			ioe.printStackTrace();
+			return "ERROR";
+		}
+		
+		return "SUCCESS";
+	}
+
+	@Override
+	public byte[] getUserImage(String username) throws IOException {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.eq("username", username));
+		
+		User _user = (User) criteria.uniqueResult();
+		
+		if (_user != null) {
+			if (_user.getUser_image() != null) {
+				byte[] imageData = _user.getUser_image();
+				return imageData;	
+			}
+			else {
+				File file = new File("E:\\default-image.jpeg");
+				byte[] defaultImage = new byte[(int) file.length()];
+				
+				FileInputStream stream = new FileInputStream(file);
+				stream.read(defaultImage);
+				stream.close();
+				
+				return defaultImage;
+			}
+		}
+		else {
+			return null;
+		}		
+	}
+
 }

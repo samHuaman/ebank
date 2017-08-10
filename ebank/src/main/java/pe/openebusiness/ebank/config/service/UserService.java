@@ -1,14 +1,17 @@
 package pe.openebusiness.ebank.config.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import pe.openebusiness.ebank.model.User;
-
-import java.util.List;
 
 public interface UserService {
 	
 	User findByUsername(String username);
+	
+	User findById(Integer id);
 	
 	User findProfile(String username);
 	
@@ -29,8 +32,12 @@ public interface UserService {
 	void saveUser(User user, String p_password);
 
 	//PG
-	void disableUser(String username, int valor, String comment);
+	void disableUser(String username, Integer valor, String comment);
 
 	List<User> getAllUser();
+	
+	String saveUserImage(String username, MultipartFile file) throws Exception;
+	
+	byte[] getUserImage(String username) throws IOException;
 
 }
