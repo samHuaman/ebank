@@ -61,7 +61,6 @@ public class UserServiceImpl implements UserService {
 	public boolean validateCurrentPassword(String username, String password) {
 		return dao.validateCurrentPassword(username, password);
 	}
-
 	//PG
 	@Override
 	public void disableUser(String username,Integer valor, String comment) {dao.disableUser(username,valor,comment); }
@@ -93,6 +92,5 @@ public class UserServiceImpl implements UserService {
 	public byte[] getUserImage(String username) throws IOException {
 		return dao.getUserImage(username);
 	}
-
 
 }

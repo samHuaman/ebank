@@ -30,13 +30,17 @@ public class Warranty implements Serializable {
     @Column(name = "total_assessed", nullable = false)
     private String total_assessed;
 
-    @NotEmpty
-    @Column(name = "warranty_type", nullable = false)
-    private Integer warranty_type;
+//    @NotEmpty
+//    @Column(name = "warranty_type", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "warranty_type_id")
+    private WarrantyType warranty_type;
 
-    @NotEmpty
-    @Column(name = "assest_type", nullable = false)
-    private Integer assest_type;
+//    @NotEmpty
+//    @Column(name = "assest_type", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "assest_type_id")
+    private AssestType assest_type;
 
     @NotEmpty
     @Column(name = "ddescription", nullable = false)
@@ -63,6 +67,7 @@ public class Warranty implements Serializable {
     private Integer customer_id;
 
     //Get & Set
+
     public Integer getWarranty_id() {
         return warranty_id;
     }
@@ -95,19 +100,19 @@ public class Warranty implements Serializable {
         this.total_assessed = total_assessed;
     }
 
-    public Integer getWarranty_type() {
+    public WarrantyType getWarranty_type() {
         return warranty_type;
     }
 
-    public void setWarranty_type(Integer warranty_type) {
+    public void setWarranty_type(WarrantyType warranty_type) {
         this.warranty_type = warranty_type;
     }
 
-    public Integer getAssest_type() {
+    public AssestType getAssest_type() {
         return assest_type;
     }
 
-    public void setAssest_type(Integer assest_type) {
+    public void setAssest_type(AssestType assest_type) {
         this.assest_type = assest_type;
     }
 

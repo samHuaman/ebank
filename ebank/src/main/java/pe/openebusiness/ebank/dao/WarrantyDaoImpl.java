@@ -38,21 +38,21 @@ public class WarrantyDaoImpl extends  AbstractDao<Integer, Warranty> implements 
     public List<Warranty> getAllWarrantyCustomerById(Integer customerId){
 
         Criteria criteria = createEntityCriteria();
-        criteria.setProjection(Projections.projectionList()
-                .add(Projections.property("warranty_id"),"warranty_id")
-                .add(Projections.property("customer_type"), "customer_type")
-                .add(Projections.property("customer_id"), "customer_id")
-                .add(Projections.property("customer"), "customer")
-                .add(Projections.property("total_assessed"), "total_assessed")
-                .add(Projections.property("warranty_type"), "warranty_type")
-                .add(Projections.property("assest_type"), "assest_type")
-                .add(Projections.property("ddescription"), "ddescription")
-                .add(Projections.property("aaddress"), "aaddress")
-                .add(Projections.property("public_record_number"), "public_record_number")
-                .add(Projections.property("amount_assessed"), "amount_assessed")
-                .add(Projections.property("policy"), "policy"))
-                .setResultTransformer(Transformers.aliasToBean(Warranty.class));
-        criteria.addOrder(Order.asc("warranty_type"));
+//        criteria.setProjection(Projections.projectionList()
+//                .add(Projections.property("warranty_id"),"warranty_id")
+//                .add(Projections.property("customer_type"), "customer_type")
+//                .add(Projections.property("customer_id"), "customer_id")
+//                .add(Projections.property("customer"), "customer")
+//                .add(Projections.property("total_assessed"), "total_assessed")
+//                .add(Projections.property("warranty_type"), "warranty_type")
+//                .add(Projections.property("assest_type"), "assest_type")
+//                .add(Projections.property("ddescription"), "ddescription")
+//                .add(Projections.property("aaddress"), "aaddress")
+//                .add(Projections.property("public_record_number"), "public_record_number")
+//                .add(Projections.property("amount_assessed"), "amount_assessed")
+//                .add(Projections.property("policy"), "policy"))
+//                .setResultTransformer(Transformers.aliasToBean(Warranty.class));
+        criteria.addOrder(Order.asc("warranty_id"));
         List<Warranty> warrantys = (List<Warranty>) criteria.list();
         return warrantys;
     }

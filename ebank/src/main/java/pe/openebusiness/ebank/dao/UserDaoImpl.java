@@ -27,7 +27,6 @@ import pe.openebusiness.ebank.model.User;
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	
 	private static final Integer DAYS_ENABLED_DEFAULT = 30;
-	//Criteria criteria = createEntityCriteria();
 
 	@Override
 	public User findByUsername(String username) {
@@ -166,19 +165,18 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	@Override
 	public boolean validateCurrentPassword(String username, String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
+
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("username", username));
-		
+
 		User user = (User) criteria.uniqueResult();
-		
+
 		if (passwordEncoder.matches(password, user.getPassword())) {
 			return true;
 		}
-		
+
 		return false;
 	}
-
 
 	//PG
 	@Override
@@ -198,7 +196,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> getAllUser(){
+	public List<User> getAllUser() {
 		Criteria criteria = createEntityCriteria();
 		criteria.setProjection(Projections.projectionList()
 				.add(Projections.property("user_id"),"user_id")
@@ -327,6 +325,34 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		return "SUCCESS";
 	}
 
+//	@Override
+//	public byte[] getUserImage(String username) throws IOException {
+//		Criteria criteria = createEntityCriteria();
+//		criteria.add(Restrictions.eq("username", username));
+//
+//		User _user = (User) criteria.uniqueResult();
+//
+//		if (_user != null) {
+//			if (_user.getUser_image() != null) {
+//				byte[] imageData = _user.getUser_image();
+//				return imageData;
+//			}
+//			else {
+//				File file = new File("E:\\default-image.jpeg");
+//				byte[] defaultImage = new byte[(int) file.length()];
+//
+//				FileInputStream stream = new FileInputStream(file);
+//				stream.read(defaultImage);
+//				stream.close();
+//
+//				return defaultImage;
+//			}
+//		}
+//		}
+//
+//		return "SUCCESS";
+//	}
+
 	@Override
 	public byte[] getUserImage(String username) throws IOException {
 		Criteria criteria = createEntityCriteria();
@@ -350,6 +376,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 				return defaultImage;
 			}
 		}
+
 		else {
 			return null;
 		}		

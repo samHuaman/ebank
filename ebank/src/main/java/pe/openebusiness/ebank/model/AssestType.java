@@ -10,8 +10,8 @@ import java.io.Serializable;
 public class AssestType  implements Serializable{
 
     @Id
-    @GeneratedValue(generator = "assest_seq")
-    @SequenceGenerator(name = "assest_seq", sequenceName = "ASSEST_SEQ", allocationSize = 1)
+//    @GeneratedValue(generator = "assest_seq")
+//    @SequenceGenerator(name = "assest_seq", sequenceName = "ASSEST_SEQ", allocationSize = 1)
     @Column(name = "assest_type_id")
     private Integer assest_type_id;
 
