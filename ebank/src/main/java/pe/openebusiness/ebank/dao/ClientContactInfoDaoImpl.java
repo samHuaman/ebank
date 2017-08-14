@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package pe.openebusiness.ebank.dao;
 
 import org.hibernate.Criteria;
@@ -76,6 +77,7 @@ public class ClientContactInfoDaoImpl extends AbstractDao<Integer, ClientContact
 	}
 
 }
+=======
 package pe.openebusiness.ebank.dao;
 
 import org.hibernate.Criteria;
@@ -137,3 +139,4 @@ public class ClientContactInfoDaoImpl extends AbstractDao<Integer, ClientContact
 	}
 
 }
+>>>>>>> branch 'master' of https://github.com/samHuaman/ebank.git

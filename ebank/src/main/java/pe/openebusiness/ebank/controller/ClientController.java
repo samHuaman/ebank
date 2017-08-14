@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package pe.openebusiness.ebank.controller;
 
 import java.util.List;
@@ -217,6 +218,7 @@ public class ClientController {
 	}
 	
 }
+=======
 package pe.openebusiness.ebank.controller;
 
 import java.util.List;
@@ -402,3 +404,4 @@ public class ClientController {
 	}
 
 }
+>>>>>>> branch 'master' of https://github.com/samHuaman/ebank.git

@@ -36,6 +36,7 @@ public interface UserService {
 	
 	void saveUser(User user, String p_password);
 
+	//PG
 	void disableUser(String username, Integer valor, String comment);
 
 	List<User> getAllUser();
