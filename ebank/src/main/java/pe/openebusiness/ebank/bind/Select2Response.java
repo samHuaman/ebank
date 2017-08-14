@@ -1,4 +1,5 @@
 package pe.openebusiness.ebank.bind;
+package pe.openebusiness.ebank.bind;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -168,21 +168,26 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	@Override
 	public boolean validateCurrentPassword(String username, String password) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		
+
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("username", username));
-		
+
 		User user = (User) criteria.uniqueResult();
-		
+
 		if (passwordEncoder.matches(password, user.getPassword())) {
 			return true;
 		}
-		
+
 		return false;
 	}
 
+	//PG
 	@Override
+<<<<<<< HEAD
 	public void disableUser(String username, int valor, String comment) {
+=======
+	public void disableUser(String username, Integer valor,String comment) {
+>>>>>>> branch 'master' of https://github.com/samHuaman/ebank.git
 
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("username",username));
@@ -329,6 +334,34 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		return "SUCCESS";
 	}
 
+//	@Override
+//	public byte[] getUserImage(String username) throws IOException {
+//		Criteria criteria = createEntityCriteria();
+//		criteria.add(Restrictions.eq("username", username));
+//
+//		User _user = (User) criteria.uniqueResult();
+//
+//		if (_user != null) {
+//			if (_user.getUser_image() != null) {
+//				byte[] imageData = _user.getUser_image();
+//				return imageData;
+//			}
+//			else {
+//				File file = new File("E:\\default-image.jpeg");
+//				byte[] defaultImage = new byte[(int) file.length()];
+//
+//				FileInputStream stream = new FileInputStream(file);
+//				stream.read(defaultImage);
+//				stream.close();
+//
+//				return defaultImage;
+//			}
+//		}
+//		}
+//
+//		return "SUCCESS";
+//	}
+
 	@Override
 	public byte[] getUserImage(String username) throws IOException {
 		Criteria criteria = createEntityCriteria();
@@ -352,6 +385,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 				return defaultImage;
 			}
 		}
+
 		else {
 			return null;
 		}		

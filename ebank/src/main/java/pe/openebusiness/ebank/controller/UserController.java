@@ -105,8 +105,8 @@ public class UserController {
 	}
 
     @RequestMapping(value = "enableUsers")
-    private String enableUsers(String username, int value, String comment) {
-      userService.disableUser(username, value, comment);
+    private String enableUsers(String username, Integer value, String comment) {
+	    userService.disableUser(username,value,comment);
       return "SUCCESS";
     }
     

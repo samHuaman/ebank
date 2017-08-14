@@ -64,9 +64,9 @@ public class UserServiceImpl implements UserService {
 	public boolean validateCurrentPassword(String username, String password) {
 		return dao.validateCurrentPassword(username, password);
 	}
-
+	//PG
 	@Override
-	public void disableUser(String username,int valor, String comment) {dao.disableUser(username,valor,comment); }
+	public void disableUser(String username,Integer valor, String comment) {dao.disableUser(username,valor,comment); }
 
 	@Override
 	public List<User> getAllUser(){return dao.getAllUser();}

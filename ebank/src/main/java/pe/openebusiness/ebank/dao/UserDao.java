@@ -36,7 +36,7 @@ public interface UserDao {
 	
 	void saveUser(User user, String p_password);
 
-	void disableUser(String username, int valor, String comment);
+	void disableUser(String username, Integer valor, String comment);
 
 	List<User> getAllUser();
 	
