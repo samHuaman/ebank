@@ -10,30 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
 import pe.openebusiness.ebank.bind.Select2Response;
-import pe.openebusiness.ebank.model.AddressGroupType;
-import pe.openebusiness.ebank.model.AddressType;
-import pe.openebusiness.ebank.model.CivilStatus;
-import pe.openebusiness.ebank.model.Client;
-import pe.openebusiness.ebank.model.ClientAddress;
-import pe.openebusiness.ebank.model.ClientContactInformation;
-import pe.openebusiness.ebank.model.Country;
-import pe.openebusiness.ebank.model.DocumentType;
-import pe.openebusiness.ebank.model.EconomicActivity;
-import pe.openebusiness.ebank.model.EmploymentSituation;
-import pe.openebusiness.ebank.model.Gender;
-import pe.openebusiness.ebank.model.HousingType;
-import pe.openebusiness.ebank.model.Magnitude;
-import pe.openebusiness.ebank.model.PersonType;
-import pe.openebusiness.ebank.model.RoadType;
-import pe.openebusiness.ebank.model.SectorType;
-import pe.openebusiness.ebank.model.Ubigeo;
-import pe.openebusiness.ebank.model.ZoneType;
+import pe.openebusiness.ebank.model.*;
 import pe.openebusiness.ebank.service.ClientService;
 
 @RestController
 @RequestMapping(value = "client")
 public class ClientController {
-	
+
 	@Autowired
 	ClientService clientService;
 	
@@ -198,5 +181,5 @@ public class ClientController {
 		CustomHttpResponse response = clientService.editContactInfo(contactInformation);
 		return response;
 	}
-	
+
 }
