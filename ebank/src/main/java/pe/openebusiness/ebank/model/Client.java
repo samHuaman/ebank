@@ -55,7 +55,7 @@ public class Client implements Serializable {
 	
 	@NotEmpty
 	@Column(name = "firstname", nullable = false)
-	private String fristname;
+	private String firstname;
 	
 	@Column(name = "secondname", nullable = true)
 	private String secondname;
@@ -152,12 +152,12 @@ public class Client implements Serializable {
 		this.contacts = contacts;
 	}
 
-	public String getFristname() {
-		return fristname;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFristname(String fristname) {
-		this.fristname = fristname;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getSecondname() {

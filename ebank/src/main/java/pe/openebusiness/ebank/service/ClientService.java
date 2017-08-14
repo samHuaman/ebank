@@ -3,7 +3,10 @@ package pe.openebusiness.ebank.service;
 import java.util.List;
 
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
 import pe.openebusiness.ebank.bind.Select2Response;
+import pe.openebusiness.ebank.filter.ClientFilter;
 import pe.openebusiness.ebank.model.AddressGroupType;
 import pe.openebusiness.ebank.model.AddressType;
 import pe.openebusiness.ebank.model.CivilStatus;
@@ -68,5 +71,9 @@ public interface ClientService {
 	public CustomHttpResponse edit(Client client);
 	
 	public CustomHttpResponse editContactInfo(ClientContactInformation contactInformation);
+	
+	public CustomHttpResponse editAddress(ClientAddress clientAddress);
+	
+	public DataTableResponse<Client> getClientDataTable(DataTableRequest<ClientFilter> request);
 
 }

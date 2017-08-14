@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
+import pe.openebusiness.ebank.filter.UserFilter;
 import pe.openebusiness.ebank.model.User;
 
 public interface UserService {
@@ -14,6 +17,8 @@ public interface UserService {
 	User findById(Integer id);
 	
 	User findProfile(String username);
+	
+	public DataTableResponse<User> getUserDataTable(DataTableRequest<UserFilter> request);
 	
 	void updateFailedAttempt(String username);
 	

@@ -57,7 +57,7 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
 				res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
 			}
 			else if (exception.getClass().isAssignableFrom(BadCredentialsException.class)) {
-				res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+				res.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
 				sumFailedAttempt(user);
 			}
 			else if (exception.getClass().isAssignableFrom(LockedException.class)) {
@@ -67,7 +67,7 @@ public class CustomAuthFailureHandler extends SimpleUrlAuthenticationFailureHand
 				res.setStatus(HttpServletResponse.SC_GONE);
 			}
 			else {
-				res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+				res.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
 			}
 		}
 	}

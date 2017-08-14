@@ -10,8 +10,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
 import pe.openebusiness.ebank.config.service.UserService;
 import pe.openebusiness.ebank.dao.UserDao;
+import pe.openebusiness.ebank.filter.UserFilter;
 import pe.openebusiness.ebank.model.User;
 
 @Component
@@ -91,6 +94,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public byte[] getUserImage(String username) throws IOException {
 		return dao.getUserImage(username);
+	}
+
+	@Override
+	public DataTableResponse<User> getUserDataTable(DataTableRequest<UserFilter> request) {
+		return dao.getUserDataTable(request);
 	}
 
 }

@@ -24,25 +24,42 @@ public class ClientContactInfoDaoImpl extends AbstractDao<Integer, ClientContact
 
 	@Override
 	public CustomHttpResponse edit(ClientContactInformation contactInformation) {
+		String action = "";
+		
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("contact_information_id", contactInformation.getContact_information_id()));
 		
 		CustomHttpResponse response = new CustomHttpResponse();
 		ClientContactInformation _contactInformation = (ClientContactInformation) criteria.uniqueResult();
 		
-		if (_contactInformation == null) {
-			response.setStatusCode(400);
-			response.setMessage("Client not found");
-			
-			return response;
+		if (contactInformation.getContact_information_id() != null) {
+			if (_contactInformation == null) {
+				response.setStatusCode(400);
+				response.setMessage("Client not found");
+				
+				return response;
+			}
+			else {
+				_contactInformation.setEmail(contactInformation.getEmail());
+				_contactInformation.setHome_phone(contactInformation.getHome_phone());
+				_contactInformation.setCellphone(contactInformation.getCellphone());
+				
+				try {
+					update(_contactInformation);
+					action = "edited";
+				} catch (Exception ex) {
+					response.setStatusCode(500);
+					response.setMessage(ex.getMessage());
+					response.setStackTrace(ex.getStackTrace());
+					
+					return response;
+				}
+			}
 		}
 		else {
-			_contactInformation.setEmail(contactInformation.getEmail());
-			_contactInformation.setHome_phone(contactInformation.getHome_phone());
-			_contactInformation.setCellphone(contactInformation.getCellphone());
-			
 			try {
-				update(_contactInformation);
+				persist(contactInformation);
+				action = "saved";
 			} catch (Exception ex) {
 				response.setStatusCode(500);
 				response.setMessage(ex.getMessage());
@@ -50,12 +67,12 @@ public class ClientContactInfoDaoImpl extends AbstractDao<Integer, ClientContact
 				
 				return response;
 			}
-			
-			response.setStatusCode(200);
-			response.setMessage("Client contact info edited");
-			
-			return response;
 		}
+		
+		response.setStatusCode(200);
+		response.setMessage("Client contact info " + action);
+		
+		return response;
 	}
 
 }

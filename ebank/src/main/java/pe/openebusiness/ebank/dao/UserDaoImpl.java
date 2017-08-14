@@ -20,6 +20,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
+import pe.openebusiness.ebank.filter.UserFilter;
 import pe.openebusiness.ebank.model.User;
 
 @Component
@@ -179,16 +182,18 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	@Override
-	public void disableUser(String username, int valor,String comment) {
+	public void disableUser(String username, int valor, String comment) {
 
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("username",username));
 		User user = (User) criteria.uniqueResult();
-		if (valor == 0){
+		
+		if (valor == 0) {
 			user.setEnabled(valor);
-		}else{
+		} else {
 			user.setEnabled(valor);
 		}
+		
 		user.setEnabled_commentary(comment);
 		update(user);
 	}
@@ -350,6 +355,45 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		else {
 			return null;
 		}		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public DataTableResponse<User> getUserDataTable(DataTableRequest<UserFilter> request) {
+		Criteria criteria = createEntityCriteria();
+		criteria.setProjection(Projections.projectionList()
+				.add(Projections.property("user_id"),"user_id")
+				.add(Projections.property("username"),"username")
+				.add(Projections.property("enabled"),"enabled")
+				.add(Projections.property("user_expired_date"),"user_expired_date")
+				.add(Projections.property("credentials_expired_date"),"credentials_expired_date")
+				.add(Projections.property("email"),"email")
+				.add(Projections.property("firstname"),"firstname")
+				.add(Projections.property("lastname"),"lastname")
+				.add(Projections.property("days_enabled"),"days_enabled"))
+				.setResultTransformer(Transformers.aliasToBean(User.class));
+		
+		criteria.addOrder(Order.asc("username"));
+		criteria.addOrder(Order.asc("firstname"));
+		criteria.addOrder(Order.asc("lastname"));
+		
+		int recordsTotal = criteria.list().size();
+
+		int recordsFiltered = criteria.list().size();
+		
+		criteria.setFirstResult(request.getStart());
+		criteria.setMaxResults(request.getLength());
+		
+		List<User> data = (List<User>) criteria.list();
+		
+		DataTableResponse<User> response = new DataTableResponse<User>();
+		
+		response.setData(data);
+		response.setDraw(request.getDraw());
+		response.setRecordsFiltered(recordsFiltered);
+		response.setRecordsTotal(recordsTotal);
+		
+		return response;
 	}
 
 }

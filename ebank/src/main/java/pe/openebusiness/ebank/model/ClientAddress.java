@@ -5,9 +5,11 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +17,8 @@ import javax.persistence.Table;
 public class ClientAddress implements Serializable {
 	
 	@Id
+	@GeneratedValue(generator = "client_address_seq")
+	@SequenceGenerator(name = "client_address_seq", sequenceName = "CLIENT_ADDRESS_SEQ", allocationSize = 1	)
 	@Column(name = "address_id")
 	private Integer address_id;
 	
@@ -70,7 +74,7 @@ public class ClientAddress implements Serializable {
 	@Column(name = "sector_name", nullable = true)
 	private String sector_name;
 	
-	@Column(name = "reference", nullable = true)
+	@Column(name = "reference", nullable = true, length = 200)
 	private String reference;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

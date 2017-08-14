@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
 import pe.openebusiness.ebank.config.service.UserService;
+import pe.openebusiness.ebank.filter.UserFilter;
 import pe.openebusiness.ebank.model.User;
 
 @RestController
@@ -37,6 +40,20 @@ public class UserController {
 		user = userService.findProfile(username);
 		
 		return user;		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getUserDataTable")
+	public DataTableResponse<User> getUserDataTable(DataTableRequest<UserFilter> request) {
+		DataTableResponse<User> response = userService.getUserDataTable(request);
+		return response;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getUserByName")
+	private User getUserByName(String username) {
+		User user = userService.findByUsername(username);
+		return user;
 	}
 	
 	@RequestMapping(value = "getUserById")

@@ -1,11 +1,17 @@
 package pe.openebusiness.ebank.dao;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
+import pe.openebusiness.ebank.filter.ClientFilter;
 import pe.openebusiness.ebank.model.Client;
 
 @Component
@@ -43,7 +49,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 			_client.setTaxpayer_id_number(client.getTaxpayer_id_number());
 			_client.setEconomicActivity(client.getEconomicActivity());
 			_client.setBusiness_name(client.getBusiness_name());
-			_client.setFristname(client.getFristname());
+			_client.setFirstname(client.getFirstname());
 			_client.setSecondname(client.getSecondname());
 			_client.setLastname_a(client.getLastname_a());
 			_client.setLastname_b(client.getLastname_b());
@@ -71,6 +77,36 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 			
 			return response;
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public DataTableResponse<Client> getClientDataTable(DataTableRequest<ClientFilter> request) {
+		Criteria criteria = createEntityCriteria();
+		
+		criteria.addOrder(Order.asc("client_id"));
+		criteria.addOrder(Order.asc("firstname"));
+		criteria.addOrder(Order.asc("secondname"));
+		criteria.addOrder(Order.asc("lastname_a"));
+		criteria.addOrder(Order.asc("lastname_b"));
+		
+		int recordsTotal = criteria.list().size();
+
+		int recordsFiltered = criteria.list().size();
+		
+		criteria.setFirstResult(request.getStart());
+		criteria.setMaxResults(request.getLength());
+		
+		List<Client> data = (List<Client>) criteria.list();
+		
+		DataTableResponse<Client> response = new DataTableResponse<Client>();
+		
+		response.setData(data);
+		response.setDraw(request.getDraw());
+		response.setRecordsFiltered(recordsFiltered);
+		response.setRecordsTotal(recordsTotal);
+				
+		return response;
 	}
 
 }

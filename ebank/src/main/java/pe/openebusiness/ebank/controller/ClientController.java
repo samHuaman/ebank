@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
 import pe.openebusiness.ebank.bind.Select2Response;
+import pe.openebusiness.ebank.filter.ClientFilter;
 import pe.openebusiness.ebank.model.AddressGroupType;
 import pe.openebusiness.ebank.model.AddressType;
 import pe.openebusiness.ebank.model.CivilStatus;
@@ -196,6 +199,20 @@ public class ClientController {
 	@RequestMapping(value = "editContactInfo", method = RequestMethod.POST)
 	private CustomHttpResponse editContactInfo(ClientContactInformation contactInformation) {
 		CustomHttpResponse response = clientService.editContactInfo(contactInformation);
+		return response;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "editAddress", method = RequestMethod.POST)
+	private CustomHttpResponse editAddress(ClientAddress clientAddress) {
+		CustomHttpResponse response = clientService.editAddress(clientAddress);
+		return response;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getClientDataTable")
+	private DataTableResponse<Client> getClientDataTable(DataTableRequest<ClientFilter> request) {
+		DataTableResponse<Client> response = clientService.getClientDataTable(request);
 		return response;
 	}
 	

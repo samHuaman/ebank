@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
 import pe.openebusiness.ebank.bind.Select2Response;
 import pe.openebusiness.ebank.dao.AddressGroupTypeDao;
 import pe.openebusiness.ebank.dao.AddressTypeDao;
@@ -28,6 +30,7 @@ import pe.openebusiness.ebank.dao.RoadTypeDao;
 import pe.openebusiness.ebank.dao.SectorTypeDao;
 import pe.openebusiness.ebank.dao.UbigeoDao;
 import pe.openebusiness.ebank.dao.ZoneTypeDao;
+import pe.openebusiness.ebank.filter.ClientFilter;
 import pe.openebusiness.ebank.model.AddressGroupType;
 import pe.openebusiness.ebank.model.AddressType;
 import pe.openebusiness.ebank.model.CivilStatus;
@@ -214,6 +217,16 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public CustomHttpResponse editContactInfo(ClientContactInformation contactInformation) {
 		return contactDao.edit(contactInformation);
+	}
+
+	@Override
+	public CustomHttpResponse editAddress(ClientAddress clientAddress) {
+		return addressDao.edit(clientAddress);
+	}
+
+	@Override
+	public DataTableResponse<Client> getClientDataTable(DataTableRequest<ClientFilter> request) {
+		return clientDao.getClientDataTable(request);
 	}
 
 }
