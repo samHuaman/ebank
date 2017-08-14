@@ -23,7 +23,8 @@ public class AccountDaoImpl extends AbstractDao<Integer,Account> implements Acco
         return a;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Account> getAllAccountByClientId(Integer clientId) {
         Criteria c = createEntityCriteria();
         c.addOrder(Order.asc("account_id"));

@@ -181,13 +181,8 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 		return false;
 	}
 
-	//PG
 	@Override
-<<<<<<< HEAD
-	public void disableUser(String username, int valor, String comment) {
-=======
 	public void disableUser(String username, Integer valor,String comment) {
->>>>>>> branch 'master' of https://github.com/samHuaman/ebank.git
 
 		Criteria criteria = createEntityCriteria();
 		criteria.add(Restrictions.eq("username",username));

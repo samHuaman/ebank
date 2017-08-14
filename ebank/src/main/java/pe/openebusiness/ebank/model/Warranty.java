@@ -4,8 +4,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
 
 @Entity
 @Table(name= "WARRANTY")

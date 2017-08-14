@@ -15,7 +15,8 @@ import java.util.List;
 public class WarrantyTypeDaoImpl extends AbstractDao<Integer, WarrantyType> implements WarrantyTypeDao {
 
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<WarrantyType> getAllWarrantyType() {
 
         Criteria criteria = createEntityCriteria();

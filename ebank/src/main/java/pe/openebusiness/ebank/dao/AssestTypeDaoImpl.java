@@ -4,7 +4,6 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.transform.Transformers;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import pe.openebusiness.ebank.model.AssestType;
@@ -15,7 +14,8 @@ import java.util.List;
 @Repository("assestTypeDao")
 public class AssestTypeDaoImpl extends AbstractDao<Integer,AssestType> implements AssestTypeDao {
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<AssestType> getAllAssestType() {
 
         Criteria criteria = createEntityCriteria();

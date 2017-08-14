@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package pe.openebusiness.ebank.dao;
 
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
@@ -16,17 +15,3 @@ public interface ClientDao {
 	DataTableResponse<Client> getClientDataTable(DataTableRequest<ClientFilter> request);
 
 }
-=======
-package pe.openebusiness.ebank.dao;
-
-import pe.openebusiness.ebank.bind.CustomHttpResponse;
-import pe.openebusiness.ebank.model.Client;
-
-public interface ClientDao {
-	
-	Client findById(Integer id);
-	
-	CustomHttpResponse edit(Client client);
-
-}
->>>>>>> branch 'master' of https://github.com/samHuaman/ebank.git

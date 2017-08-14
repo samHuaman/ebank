@@ -2,7 +2,6 @@ package pe.openebusiness.ebank.dao;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.Transformers;
@@ -17,7 +16,8 @@ import java.util.List;
 @Repository("warrantyDao")
 public class WarrantyDaoImpl extends  AbstractDao<Integer, Warranty> implements  WarrantyDao {
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Warranty> findWarrantyCustomerById(Integer customerId) {
 
         Criteria criteria = createEntityCriteria();
@@ -34,7 +34,8 @@ public class WarrantyDaoImpl extends  AbstractDao<Integer, Warranty> implements 
         return warrantys;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public List<Warranty> getAllWarrantyCustomerById(Integer customerId){
 
         Criteria criteria = createEntityCriteria();
