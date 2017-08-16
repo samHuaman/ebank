@@ -6,9 +6,11 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,6 +20,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class SubProduct implements Serializable {
 	
 	@Id
+	@GeneratedValue(generator = "subproduct_seq")
+	@SequenceGenerator(name = "subproduct_seq", sequenceName = "SUBPRODUCT_SEQ", allocationSize = 1)
 	@Column(name = "sub_product_id")
 	private Integer sub_product_id;
 	

@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
 import pe.openebusiness.ebank.bind.DataTableRequest;
 import pe.openebusiness.ebank.bind.DataTableResponse;
+import pe.openebusiness.ebank.bind.Select2Response;
 import pe.openebusiness.ebank.filter.ProductFilter;
 import pe.openebusiness.ebank.model.Plan;
 import pe.openebusiness.ebank.model.Product;
@@ -140,6 +142,32 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
 		}
 
 		return product;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Select2Response<Product> searchProducts(String query, Integer page, Integer pageLimit) {
+		Criteria criteria = createEntityCriteria();
+		criteria.add(Restrictions.ilike("description", query, MatchMode.ANYWHERE));
+		
+		Integer total = criteria.list().size();
+		
+		criteria.addOrder(Order.asc("description"));
+		
+		page -= 1;
+		
+		int firstResult = page * pageLimit;
+		
+		criteria.setFirstResult(firstResult);
+		criteria.setMaxResults(pageLimit);
+		
+		List<Product> items = (List<Product>) criteria.list();
+		
+		Select2Response<Product> response = new Select2Response<Product>();
+		response.setItems(items);
+		response.setTotal(total);
+		
+		return response;
 	}
 
 }

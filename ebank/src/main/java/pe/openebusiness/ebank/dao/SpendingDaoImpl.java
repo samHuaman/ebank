@@ -1,0 +1,45 @@
+package pe.openebusiness.ebank.dao;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+import pe.openebusiness.ebank.bind.DataTableRequest;
+import pe.openebusiness.ebank.bind.DataTableResponse;
+import pe.openebusiness.ebank.filter.SpendingFilter;
+import pe.openebusiness.ebank.model.Spending;
+
+@Component
+@Repository(value = "spendingDao")
+public class SpendingDaoImpl extends AbstractDao<Integer, Spending> implements SpendingDao {
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public DataTableResponse<Spending> getSpendingDataTable(DataTableRequest<SpendingFilter> request) {
+		Criteria criteria = createEntityCriteria();
+		
+		criteria.addOrder(Order.asc("spending_id"));
+		
+		int recordsTotal = criteria.list().size();
+		
+		int recordsFiltered = criteria.list().size();
+		
+		criteria.setFirstResult(request.getStart());
+		criteria.setMaxResults(request.getLength());
+
+		List<Spending> data = (List<Spending>) criteria.list();
+		
+		DataTableResponse<Spending> response = new DataTableResponse<Spending>();
+		
+		response.setData(data);
+		response.setDraw(request.getDraw());
+		response.setRecordsFiltered(recordsFiltered);
+		response.setRecordsTotal(recordsTotal);
+				
+		return response;
+	}
+
+}

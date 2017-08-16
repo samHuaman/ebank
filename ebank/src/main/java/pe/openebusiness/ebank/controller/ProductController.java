@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
 import pe.openebusiness.ebank.bind.DataTableRequest;
 import pe.openebusiness.ebank.bind.DataTableResponse;
+import pe.openebusiness.ebank.bind.Select2Response;
 import pe.openebusiness.ebank.filter.ProductFilter;
+import pe.openebusiness.ebank.filter.SubProductFilter;
 import pe.openebusiness.ebank.model.Currency;
 import pe.openebusiness.ebank.model.Plan;
 import pe.openebusiness.ebank.model.Product;
 import pe.openebusiness.ebank.model.ProductType;
+import pe.openebusiness.ebank.model.SubProduct;
 import pe.openebusiness.ebank.service.ProductService;
 
 @RestController
@@ -64,6 +67,38 @@ public class ProductController {
 	private Product getProductById(Integer id) {
 		Product product = productService.getProductById(id);
 		return product;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getSubProductDataTable")
+	private DataTableResponse<SubProduct> getSubProductDataTable(DataTableRequest<SubProductFilter> request) {
+		DataTableResponse<SubProduct> response = productService.getSubProductDataTabel(request);
+		return response;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "searchProducts")
+	private Select2Response<Product> searchProducts(String query, Integer page, Integer pageLimit) {
+		if (page == null) {
+			page = 1;
+		}
+		
+		Select2Response<Product> response = productService.searchProducts(query, page, pageLimit);
+		return response;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getSubProductById")
+	private SubProduct getSubProductById(Integer id) {
+		SubProduct subProduct = productService.getSubProductById(id);
+		return subProduct;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "editSubProduct")
+	public CustomHttpResponse editSubProduct(SubProduct subProduct) {
+		CustomHttpResponse response = productService.editSubProduct(subProduct);
+		return response;
 	}
 
 }
