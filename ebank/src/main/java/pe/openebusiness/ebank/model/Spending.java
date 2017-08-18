@@ -23,11 +23,18 @@ public class Spending implements Serializable {
 	@JoinColumn(name = "spending_type_id", nullable = false)
 	private SpendingType spendingType;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "client_id", nullable = false)
+	private Client client;
+	
 	@Column(name = "spending_amount")
 	private Double spending_amount;
 	
 	@Column(name = "registration_date")
 	private Date registration_date;
+	
+	@Column(name = "status", nullable = false)
+	private Integer status;
 
 	public Integer getSpending_id() {
 		return spending_id;
@@ -45,6 +52,14 @@ public class Spending implements Serializable {
 		this.spendingType = spendingType;
 	}
 
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
 	public Double getSpending_amount() {
 		return spending_amount;
 	}
@@ -59,6 +74,14 @@ public class Spending implements Serializable {
 
 	public void setRegistration_date(Date registration_date) {
 		this.registration_date = registration_date;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 }

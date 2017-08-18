@@ -10,37 +10,38 @@ import org.springframework.stereotype.Repository;
 
 import pe.openebusiness.ebank.bind.DataTableRequest;
 import pe.openebusiness.ebank.bind.DataTableResponse;
-import pe.openebusiness.ebank.filter.SpendingFilter;
-import pe.openebusiness.ebank.model.Spending;
+import pe.openebusiness.ebank.filter.MovementFilter;
+import pe.openebusiness.ebank.model.Movement;
 
 @Component
-@Repository(value = "spendingDao")
-public class SpendingDaoImpl extends AbstractDao<Integer, Spending> implements SpendingDao {
+@Repository(value = "movementDao")
+public class MovementDaoImpl extends AbstractDao<Integer, Movement> implements MovementDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public DataTableResponse<Spending> getSpendingDataTableByClient(DataTableRequest<SpendingFilter> request, Integer client_id) {
+	public DataTableResponse<Movement> getMovemetDataTableByAccount(DataTableRequest<MovementFilter> request,
+			Integer account_id) {
 		Criteria criteria = createEntityCriteria();
 		
-		criteria.add(Restrictions.eq("client.client_id", client_id));
-		criteria.addOrder(Order.asc("spending_id"));
+		criteria.add(Restrictions.eq("account.account_id", account_id));
+		criteria.addOrder(Order.asc("movement_id"));
 		
 		int recordsTotal = criteria.list().size();
-		
+
 		int recordsFiltered = criteria.list().size();
-		
+
 		criteria.setFirstResult(request.getStart());
 		criteria.setMaxResults(request.getLength());
-
-		List<Spending> data = (List<Spending>) criteria.list();
 		
-		DataTableResponse<Spending> response = new DataTableResponse<Spending>();
+		List<Movement> data = (List<Movement>) criteria.list();
+		
+		DataTableResponse<Movement> response = new DataTableResponse<Movement>();	
 		
 		response.setData(data);
 		response.setDraw(request.getDraw());
 		response.setRecordsFiltered(recordsFiltered);
 		response.setRecordsTotal(recordsTotal);
-				
+
 		return response;
 	}
 

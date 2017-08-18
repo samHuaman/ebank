@@ -7,6 +7,6 @@ import pe.openebusiness.ebank.model.Spending;
 
 public interface SpendingDao {
 	
-	DataTableResponse<Spending> getSpendingDataTable(DataTableRequest<SpendingFilter> request);
+	DataTableResponse<Spending> getSpendingDataTableByClient(DataTableRequest<SpendingFilter> request, Integer client_id);
 
 }
