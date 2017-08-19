@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package pe.openebusiness.ebank.controller;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class MassiveChargeController {
 	}
 
 }
+=======
 package pe.openebusiness.ebank.controller;
 
 import java.util.List;
@@ -74,3 +76,4 @@ public class MassiveChargeController {
 	}
 
 }
+>>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f
