@@ -19,7 +19,10 @@ public interface ProductDao {
 	Product getProductById(Integer id);
 	
 	Select2Response<Product> searchProducts(String query, Integer page, Integer pageLimit);
+<<<<<<< HEAD
 
 	List<Product> getAllProducts();
+=======
+>>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f
 
 }

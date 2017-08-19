@@ -146,6 +146,7 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@Override
 	public List<Product> getAllProducts() {
 		Criteria c = createEntityCriteria();
@@ -154,6 +155,8 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
 		List<Product> products = (List<Product>) c.list();
 		return products;
 =======
+=======
+>>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f
 	@SuppressWarnings("unchecked")
 	@Override
 	public Select2Response<Product> searchProducts(String query, Integer page, Integer pageLimit) {
@@ -178,6 +181,9 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
 		response.setTotal(total);
 		
 		return response;
+<<<<<<< HEAD
+>>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f
+=======
 >>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f
 	}
 
