@@ -87,7 +87,8 @@ public class WarrantyDaoImpl extends  AbstractDao<Integer, Warranty> implements 
         return warratyDetail;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public DataTableResponse<Warranty> getWarrantyDataTableByClientId(DataTableRequest<WarrantyFilter> request, Integer clientId) {
 
         Criteria c = createEntityCriteria();
