@@ -56,7 +56,7 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
 			_client.setMarried_surname(client.getMarried_surname());
 			_client.setGender(client.getGender());
 			_client.setBirthdate(client.getBirthdate());
-			_client.setNacionality(client.getNacionality());
+			_client.setNationality(client.getNationality());
 			_client.setResidence_country(client.getResidence_country());
 			_client.setCivilStatus(client.getCivilStatus());
 			_client.setEmploymentSituation(client.getEmploymentSituation());

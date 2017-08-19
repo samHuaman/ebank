@@ -15,15 +15,15 @@ public class Account  implements Serializable {
     @Column(name = "aaccount")
     private String aaccount;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "producto_id")
-    @Column(name = "product_id")
-    private Integer product_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")
+//    @Column(name = "product_id")
+    private Product product_id;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "sub_product_id")
-    @Column(name = "sub_product_id")
-    private Integer sub_product_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "sub_product_id")
+//    @Column(name = "sub_product_id")
+    private SubProduct sub_product_id;
 
     @Column(name = "disbur_date")
     private Date disbur_date;
@@ -85,8 +85,10 @@ public class Account  implements Serializable {
     @Column(name = "AMOUNT")
     private Double AMOUNT;
 
-    @Column(name = "CURRENCY_TYPE_ID")
-    private Double CURRENCY_TYPE_ID;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CURRENCY_TYPE_ID")
+//    @Column(name = "CURRENCY_TYPE_ID")
+    private Currency CURRENCY_TYPE_ID;
 
 
     //Get && Set
@@ -107,19 +109,19 @@ public class Account  implements Serializable {
         this.aaccount = aaccount;
     }
 
-    public Integer getProduct_id() {
+    public Product getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(Integer product_id) {
+    public void setProduct_id(Product product_id) {
         this.product_id = product_id;
     }
 
-    public Integer getSub_product_id() {
+    public SubProduct getSub_product_id() {
         return sub_product_id;
     }
 
-    public void setSub_product_id(Integer sub_product_id) {
+    public void setSub_product_id(SubProduct sub_product_id) {
         this.sub_product_id = sub_product_id;
     }
 
@@ -275,11 +277,11 @@ public class Account  implements Serializable {
         this.AMOUNT = AMOUNT;
     }
 
-    public Double getCURRENCY_TYPE_ID() {
+    public Currency getCURRENCY_TYPE_ID() {
         return CURRENCY_TYPE_ID;
     }
 
-    public void setCURRENCY_TYPE_ID(Double CURRENCY_TYPE_ID) {
+    public void setCURRENCY_TYPE_ID(Currency CURRENCY_TYPE_ID) {
         this.CURRENCY_TYPE_ID = CURRENCY_TYPE_ID;
     }
 }

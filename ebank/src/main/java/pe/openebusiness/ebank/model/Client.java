@@ -78,7 +78,7 @@ public class Client implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "nacionality")
-	private Country nacionality;
+	private Country nationality;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "residence_country")
@@ -247,13 +247,13 @@ public class Client implements Serializable {
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-
-	public Country getNacionality() {
-		return nacionality;
+	
+	public Country getNationality() {
+		return nationality;
 	}
 
-	public void setNacionality(Country nacionality) {
-		this.nacionality = nacionality;
+	public void setNationality(Country nationality) {
+		this.nationality = nationality;
 	}
 
 	public Country getResidence_country() {

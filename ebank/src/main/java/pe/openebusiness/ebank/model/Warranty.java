@@ -11,34 +11,21 @@ public class Warranty implements Serializable {
 
     @Id
     @GeneratedValue(generator = "warranty_seq")
-    @SequenceGenerator(name = "warranty_seq", sequenceName = "WARRANTY_SEQ",
-    allocationSize = 1)
+    @SequenceGenerator(name = "warranty_seq", sequenceName = "WARRANTY_SEQ", allocationSize = 1)
     @Column(name = "warranty_id")
     private Integer warranty_id;
-
-    @NotEmpty
-    @Column(name = "customer_type")
-    private String customer_type;
-
-    @NotEmpty
-    @Column(name = "customer", nullable = false)
-    private String customer;
-
-    @NotEmpty
-    @Column(name = "total_assessed", nullable = false)
-    private String total_assessed;
 
 //    @NotEmpty
 //    @Column(name = "warranty_type", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "warranty_type_id")
-    private WarrantyType warranty_type;
+    private WarrantyType warranty_type_id;
 
 //    @NotEmpty
 //    @Column(name = "assest_type", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assest_type_id")
-    private AssestType assest_type;
+    private AssestType assest_type_id;
 
     @NotEmpty
     @Column(name = "ddescription", nullable = false)
@@ -50,19 +37,15 @@ public class Warranty implements Serializable {
 
     @NotEmpty
     @Column(name = "public_record_number", nullable = false)
-    private Integer public_record_number;
+    private String public_record_number;
 
     @NotEmpty
     @Column(name = "amount_assessed", nullable = false)
     private String amount_assessed;
 
-    @NotEmpty
-    @Column(name = "policy", nullable = false)
-    private String policy;
-
-
-    @Column(name = "customer_id", nullable = false)
-    private Integer customer_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")
+    private Client client_id;
 
     //Get & Set
 
@@ -74,44 +57,20 @@ public class Warranty implements Serializable {
         this.warranty_id = warranty_id;
     }
 
-    public String getCustomer_type() {
-        return customer_type;
+    public WarrantyType getWarranty_type_id() {
+        return warranty_type_id;
     }
 
-    public void setCustomer_type(String customer_type) {
-        this.customer_type = customer_type;
+    public void setWarranty_type_id(WarrantyType warranty_type_id) {
+        this.warranty_type_id = warranty_type_id;
     }
 
-    public String getCustomer() {
-        return customer;
+    public AssestType getAssest_type_id() {
+        return assest_type_id;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
-    }
-
-    public String getTotal_assessed() {
-        return total_assessed;
-    }
-
-    public void setTotal_assessed(String total_assessed) {
-        this.total_assessed = total_assessed;
-    }
-
-    public WarrantyType getWarranty_type() {
-        return warranty_type;
-    }
-
-    public void setWarranty_type(WarrantyType warranty_type) {
-        this.warranty_type = warranty_type;
-    }
-
-    public AssestType getAssest_type() {
-        return assest_type;
-    }
-
-    public void setAssest_type(AssestType assest_type) {
-        this.assest_type = assest_type;
+    public void setAssest_type_id(AssestType assest_type_id) {
+        this.assest_type_id = assest_type_id;
     }
 
     public String getDdescription() {
@@ -130,11 +89,11 @@ public class Warranty implements Serializable {
         this.aaddress = aaddress;
     }
 
-    public Integer getPublic_record_number() {
+    public String getPublic_record_number() {
         return public_record_number;
     }
 
-    public void setPublic_record_number(Integer public_record_number) {
+    public void setPublic_record_number(String public_record_number) {
         this.public_record_number = public_record_number;
     }
 
@@ -146,19 +105,11 @@ public class Warranty implements Serializable {
         this.amount_assessed = amount_assessed;
     }
 
-    public String getPolicy() {
-        return policy;
+    public Client getClient_id() {
+        return client_id;
     }
 
-    public void setPolicy(String policy) {
-        this.policy = policy;
-    }
-
-    public Integer getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(Integer customer_id) {
-        this.customer_id = customer_id;
+    public void setClient_id(Client client_id) {
+        this.client_id = client_id;
     }
 }

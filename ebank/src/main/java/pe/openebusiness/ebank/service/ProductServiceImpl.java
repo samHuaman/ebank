@@ -11,15 +11,19 @@ import org.springframework.stereotype.Service;
 import pe.openebusiness.ebank.bind.CustomHttpResponse;
 import pe.openebusiness.ebank.bind.DataTableRequest;
 import pe.openebusiness.ebank.bind.DataTableResponse;
+import pe.openebusiness.ebank.bind.Select2Response;
 import pe.openebusiness.ebank.dao.CurrencyDao;
 import pe.openebusiness.ebank.dao.PlanDao;
 import pe.openebusiness.ebank.dao.ProductDao;
 import pe.openebusiness.ebank.dao.ProductTypeDao;
+import pe.openebusiness.ebank.dao.SubProductDao;
 import pe.openebusiness.ebank.filter.ProductFilter;
+import pe.openebusiness.ebank.filter.SubProductFilter;
 import pe.openebusiness.ebank.model.Currency;
 import pe.openebusiness.ebank.model.Plan;
 import pe.openebusiness.ebank.model.Product;
 import pe.openebusiness.ebank.model.ProductType;
+import pe.openebusiness.ebank.model.SubProduct;
 
 @Component
 @Service(value = "productService")
@@ -37,6 +41,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	PlanDao planDao;
+
+	@Autowired
+	SubProductDao subProductDao;
 
 	@Override
 	public DataTableResponse<Product> getProductDataTable(DataTableRequest<ProductFilter> request) {
@@ -66,6 +73,26 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product getProductById(Integer id) {
 		return productDao.getProductById(id);
+	}
+
+	@Override
+	public DataTableResponse<SubProduct> getSubProductDataTabel(DataTableRequest<SubProductFilter> request) {
+		return subProductDao.getSubProductDataTable(request);
+	}
+
+	@Override
+	public Select2Response<Product> searchProducts(String query, Integer page, Integer pageLimit) {
+		return productDao.searchProducts(query, page, pageLimit);
+	}
+
+	@Override
+	public SubProduct getSubProductById(Integer id) {
+		return subProductDao.getSubProductById(id);
+	}
+
+	@Override
+	public CustomHttpResponse editSubProduct(SubProduct subProduct) {
+		return subProductDao.edit(subProduct);
 	}
 
 }
