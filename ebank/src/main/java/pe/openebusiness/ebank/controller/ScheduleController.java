@@ -1,5 +1,7 @@
 package pe.openebusiness.ebank.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +40,13 @@ public class ScheduleController {
 	private Schedule getOriginalScheduleByAccount(Integer account_id) {
 		Schedule schedule = scheduleService.getOriginalScheduleByAccount(account_id);
 		return schedule;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getPendingFees")
+	private List<Fee> getPendingFees(Integer schedule_id) {
+		List<Fee> fees = scheduleService.getPendingFees(schedule_id);
+		return fees;
 	}
 
 }

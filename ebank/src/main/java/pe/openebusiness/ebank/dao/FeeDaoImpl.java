@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import pe.openebusiness.ebank.bind.DataTableRequest;
 import pe.openebusiness.ebank.bind.DataTableResponse;
+import pe.openebusiness.ebank.constant.Alias;
 import pe.openebusiness.ebank.filter.FeeFilter;
 import pe.openebusiness.ebank.model.Fee;
 
@@ -48,6 +49,22 @@ public class FeeDaoImpl extends AbstractDao<Integer, Fee> implements FeeDao {
 		response.setRecordsTotal(recordsTotal);
 				
 		return response;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Fee> getPendingFees(Integer schedule_id) {
+		Criteria criteria = createEntityCriteria();
+		
+		criteria.add(Restrictions.eq("schedule.schedule_id", schedule_id));
+		
+		criteria.createAlias("feeStatus", "status");
+		criteria.add(Restrictions.eq("status.alias", Alias.FEE_NO_PAID));
+		
+		criteria.addOrder(Order.asc("fee_number"));
+		
+		List<Fee> fees = (List<Fee>) criteria.list();
+		return fees;
 	}
 
 }
