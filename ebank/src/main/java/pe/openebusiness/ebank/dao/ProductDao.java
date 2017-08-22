@@ -6,7 +6,6 @@ import pe.openebusiness.ebank.bind.DataTableResponse;
 import pe.openebusiness.ebank.bind.Select2Response;
 import pe.openebusiness.ebank.filter.ProductFilter;
 import pe.openebusiness.ebank.model.Product;
-import pe.openebusiness.ebank.model.SubProduct;
 
 import java.util.List;
 
@@ -19,10 +18,12 @@ public interface ProductDao {
 	Product getProductById(Integer id);
 	
 	Select2Response<Product> searchProducts(String query, Integer page, Integer pageLimit);
-<<<<<<< HEAD
 
 	List<Product> getAllProducts();
+<<<<<<< HEAD
+
+
 =======
->>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 
 }

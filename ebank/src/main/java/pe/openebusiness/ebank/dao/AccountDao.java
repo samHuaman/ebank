@@ -5,7 +5,6 @@ import pe.openebusiness.ebank.bind.DataTableRequest;
 import pe.openebusiness.ebank.bind.DataTableResponse;
 import pe.openebusiness.ebank.filter.AccountFilter;
 import pe.openebusiness.ebank.model.Account;
-import pe.openebusiness.ebank.model.Product;
 
 import java.util.List;
 

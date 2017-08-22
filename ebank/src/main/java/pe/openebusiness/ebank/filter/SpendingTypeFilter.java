@@ -1,11 +1,11 @@
 <<<<<<< HEAD
+
 package pe.openebusiness.ebank.filter;
 
 import java.io.Serializable;
 
 public class SpendingTypeFilter implements Serializable {
 
-}
 =======
 package pe.openebusiness.ebank.filter;
 
@@ -13,5 +13,5 @@ import java.io.Serializable;
 
 public class SpendingTypeFilter implements Serializable {
 
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 }
->>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f

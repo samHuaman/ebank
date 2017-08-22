@@ -16,7 +16,8 @@ import java.util.List;
 public class QuotaDaoImpl extends AbstractDao<Integer, Quota> implements QuotaDao {
 
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public DataTableResponse<Quota> getQuotaDataTableByScheduleId(DataTableRequest<QuotaFilter> request, Integer scheduleId) {
 
         Criteria c = createEntityCriteria();

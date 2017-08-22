@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 package pe.openebusiness.ebank.dao;
 
 import java.util.List;
@@ -94,4 +95,4 @@ public class SpendingDaoImpl extends AbstractDao<Integer, Spending> implements S
 	}
 
 }
->>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

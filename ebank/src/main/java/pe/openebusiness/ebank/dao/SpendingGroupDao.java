@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+
 package pe.openebusiness.ebank.dao;
 
 import java.util.List;
@@ -22,4 +23,4 @@ public interface SpendingGroupDao {
 	List<SpendingGroupType> getAllGroups();
 
 }
->>>>>>> 6003be1fbe66d8959aeeda46b4aefc3305e5cd4f
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
