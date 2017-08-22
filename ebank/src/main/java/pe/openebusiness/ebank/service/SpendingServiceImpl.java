@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 package pe.openebusiness.ebank.service;
 
 import java.util.List;
@@ -66,6 +69,7 @@ public class SpendingServiceImpl implements SpendingService {
 		return typeDao.edit(spendingType);
 	}
 
+<<<<<<< HEAD
 =======
 package pe.openebusiness.ebank.service;
 
@@ -133,5 +137,7 @@ public class SpendingServiceImpl implements SpendingService {
 		return typeDao.edit(spendingType);
 	}
 
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 }

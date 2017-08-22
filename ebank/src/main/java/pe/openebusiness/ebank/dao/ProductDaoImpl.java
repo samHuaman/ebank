@@ -153,7 +153,11 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
 		List<Product> products = (List<Product>) c.list();
 		return products;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 	@SuppressWarnings("unchecked")
 	@Override
 	public Select2Response<Product> searchProducts(String query, Integer page, Integer pageLimit) {

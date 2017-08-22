@@ -107,6 +107,7 @@ public class SubProductDaoImpl extends AbstractDao<Integer, SubProduct> implemen
 		return response;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@Override
 	public List<SubProduct> getAllSubProducts() {
 		Criteria c = createEntityCriteria();
@@ -121,6 +122,11 @@ public class SubProductDaoImpl extends AbstractDao<Integer, SubProduct> implemen
 
     @SuppressWarnings("unchecked")
 	@Override
+=======
+
+    @SuppressWarnings("unchecked")
+	@Override
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
     public List<SubProduct> getAllSubProducts() {
         Criteria c = createEntityCriteria();
         c.addOrder((Order.asc("description")));
@@ -130,4 +136,7 @@ public class SubProductDaoImpl extends AbstractDao<Integer, SubProduct> implemen
 
 }
 
+<<<<<<< HEAD
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

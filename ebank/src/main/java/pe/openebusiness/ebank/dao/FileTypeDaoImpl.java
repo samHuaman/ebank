@@ -70,4 +70,9 @@ public class FileTypeDaoImpl extends AbstractDao<Integer, FileType> implements F
 		return response;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

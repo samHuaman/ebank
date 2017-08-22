@@ -1,8 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 package pe.openebusiness.ebank.dao;
 =======
 package pe.openebusiness.ebank.dao;
+=======
+package pe.openebusiness.ebank.dao;
+
+import java.util.List;
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 
 import java.util.List;
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
@@ -22,4 +28,7 @@ public interface FeeDao {
 }
 =======
 }
+<<<<<<< HEAD
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

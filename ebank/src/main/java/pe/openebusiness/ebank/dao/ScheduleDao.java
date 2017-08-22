@@ -8,4 +8,8 @@ public interface ScheduleDao {
 	
 	Schedule getOriginalScheduleByAccount(Integer account_id);
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

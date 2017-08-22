@@ -43,12 +43,18 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
+=======
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 	@Override
 	public List<Fee> getPendingFees(Integer schedule_id) {
 		return feeDao.getPendingFees(schedule_id);
 	}
 
 }
+<<<<<<< HEAD
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

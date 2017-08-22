@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 package pe.openebusiness.ebank.filter;
 
 import java.io.Serializable;
@@ -28,6 +31,7 @@ public class SpendingFilter implements Serializable {
 		this.registration_date = registration_date;
 	}
 
+<<<<<<< HEAD
 =======
 package pe.openebusiness.ebank.filter;
 
@@ -57,5 +61,7 @@ public class SpendingFilter implements Serializable {
 		this.registration_date = registration_date;
 	}
 
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 }

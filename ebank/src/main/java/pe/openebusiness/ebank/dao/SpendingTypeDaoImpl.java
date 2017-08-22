@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 package pe.openebusiness.ebank.dao;
 
 import java.util.List;
@@ -56,6 +59,7 @@ public class SpendingTypeDaoImpl extends AbstractDao<Integer, SpendingType> impl
 		return response;
 	}
 
+<<<<<<< HEAD
 =======
 package pe.openebusiness.ebank.dao;
 
@@ -113,6 +117,8 @@ public class SpendingTypeDaoImpl extends AbstractDao<Integer, SpendingType> impl
 		return response;
 	}
 
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 	@Override
 	public SpendingType getSpendingTypeById(Integer id) {
@@ -179,7 +185,11 @@ public class SpendingTypeDaoImpl extends AbstractDao<Integer, SpendingType> impl
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 =======
 }
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

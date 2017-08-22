@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 package pe.openebusiness.ebank.service;
 
 import java.util.List;
@@ -16,6 +19,7 @@ public interface MassiveChargeService {
 	CustomHttpResponse postFile(Integer type_id, MultipartFile file);
 
 }
+<<<<<<< HEAD
 =======
 package pe.openebusiness.ebank.service;
 
@@ -33,4 +37,6 @@ public interface MassiveChargeService {
 	CustomHttpResponse postFile(Integer type_id, MultipartFile file);
 
 }
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

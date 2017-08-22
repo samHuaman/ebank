@@ -1,5 +1,18 @@
+<<<<<<< HEAD
+=======
+package pe.openebusiness.ebank.dao;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 
 
+<<<<<<< HEAD
 package pe.openebusiness.ebank.dao;
 
 import java.util.List;
@@ -48,3 +61,7 @@ public class MovementDaoImpl extends AbstractDao<Integer, Movement> implements M
 	}
 
 }
+=======
+}
+
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

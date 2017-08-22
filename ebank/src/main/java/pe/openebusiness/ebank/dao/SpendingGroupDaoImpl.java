@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 package pe.openebusiness.ebank.dao;
 
 import java.util.List;
@@ -26,6 +29,7 @@ public class SpendingGroupDaoImpl extends AbstractDao<Integer, SpendingGroupType
 	}
 
 }
+<<<<<<< HEAD
 =======
 package pe.openebusiness.ebank.dao;
 
@@ -53,4 +57,6 @@ public class SpendingGroupDaoImpl extends AbstractDao<Integer, SpendingGroupType
 	}
 
 }
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 package pe.openebusiness.ebank.service;
 
 import java.util.List;
@@ -33,6 +36,7 @@ public class MassiveChargeServiceImpl implements MassiveChargeService {
 		return fileTypeDao.postFile(type_id, file);
 	}
 
+<<<<<<< HEAD
 =======
 package pe.openebusiness.ebank.service;
 
@@ -67,5 +71,7 @@ public class MassiveChargeServiceImpl implements MassiveChargeService {
 		return fileTypeDao.postFile(type_id, file);
 	}
 
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 }

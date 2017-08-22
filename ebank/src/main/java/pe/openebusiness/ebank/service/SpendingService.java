@@ -27,6 +27,9 @@ public interface SpendingService {
 
 <<<<<<< HEAD
 }
+<<<<<<< HEAD
 =======
 }
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81

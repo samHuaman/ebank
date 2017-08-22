@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
 package pe.openebusiness.ebank.dao;
 
 import java.util.List;
@@ -21,6 +24,7 @@ public interface SpendingTypeDao {
 	CustomHttpResponse edit(SpendingType spendingType);
 
 }
+<<<<<<< HEAD
 =======
 package pe.openebusiness.ebank.dao;
 
@@ -43,4 +47,6 @@ public interface SpendingTypeDao {
 	CustomHttpResponse edit(SpendingType spendingType);
 
 }
+>>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
+=======
 >>>>>>> 267acc236f5ac5026c56737813825b0d5a238d81
